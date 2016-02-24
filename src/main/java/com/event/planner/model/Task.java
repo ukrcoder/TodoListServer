@@ -18,7 +18,13 @@ public class Task implements Serializable {
     private Long id;
 
     @NotEmpty
-    private String task;
+    private String description;
+
+    public Task() { }
+
+    public Task(String description) {
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -30,12 +36,12 @@ public class Task implements Serializable {
         this.id = id;
     }
 
-    public String getTask() {
-        return task;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTask(String task) {
-        this.task = task;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDate getCreationDate() {
@@ -44,5 +50,26 @@ public class Task implements Serializable {
 
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Task task1 = (Task) o;
+
+        if (id != null ? !id.equals(task1.id) : task1.id != null) return false;
+        if (description != null ? !description.equals(task1.description) : task1.description != null) return false;
+        return !(creationDate != null ? !creationDate.equals(task1.creationDate) : task1.creationDate != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
+        return result;
     }
 }

@@ -24,7 +24,7 @@ public class TaskServiceImpl implements TaskService {
     @Cacheable(value = "tasksCache")
     @Transactional(readOnly = true)
     public List<Task> getAll() {
-        return Lists.iteratorToList(repository.findAllOrderByCreationDateDesc().iterator());
+        return Lists.iteratorToList(repository.findAllByOrderByCreationDateDesc().iterator());
     }
 
     public void delete(long taskId) {

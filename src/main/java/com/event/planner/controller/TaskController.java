@@ -24,13 +24,13 @@ public class TaskController {
         return taskService.save(task);
     }
 
-    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<Task> ajaxGetTasks() {
         return taskService.getAll();
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public void ajaxRemoveTask(long taskId) {
+    public void ajaxRemoveTask(Long taskId) {
         taskService.delete(taskId);
     }
 }
